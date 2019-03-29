@@ -16,8 +16,8 @@ Add AST Repo
 
 Add Dependency:
 ```gradle
-  compile 'com.github.ascendtech:gwt-aggrid:1.0'
-  compile 'com.github.ascendtech:gwt-aggrid:1.0:sources'
+  compile 'us.ascendtech:aggrid:0.1'
+  compile 'us.ascendtech:aggrid:0.1:sources'
 ```
 
 ### Maven
@@ -34,14 +34,14 @@ Add AST Repo
 Add Dependency
 ```xml
   <dependency>
-    <groupId>com.github.ascendtech</groupId>
-    <artifactId>gwt-aggrid</artifactId>
-    <version>1.0</version>
+    <groupId>us.ascendtech</groupId>
+    <artifactId>agGrid</artifactId>
+    <version>0.1</version>
   </dependency>
   <dependency>
-    <groupId>com.github.ascendtech</groupId>
-    <artifactId>gwt-aggrid</artifactId>
-    <version>1.0</version>
+    <groupId>us.ascendtech</groupId>
+    <artifactId>agGrid</artifactId>
+    <version>0.1</version>
     <classifier>sources</classifier>
   </dependency>
 ```
