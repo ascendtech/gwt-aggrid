@@ -93,7 +93,7 @@ columnTwo.setCellRenderer(params -> {
 });
 columnDefs.push(columnTwo);
 
-new AGGrid<>(tableDiv.getElement(), gridOptions);
+new AGGrid<>(Js.cast(tableDiv.getElement()), gridOptions);
 
 JsArray<T> currentData = new JsArray<>();
 // add data objects
