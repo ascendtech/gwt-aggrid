@@ -16,8 +16,8 @@ Add AST Repo
 
 Add Dependency:
 ```gradle
-  compile 'us.ascendtech:aggrid:0.1'
-  compile 'us.ascendtech:aggrid:0.1:sources'
+  compile 'us.ascendtech:agGrid:0.1'
+  compile 'us.ascendtech:agGrid:0.1:sources'
 ```
 
 ### Maven
