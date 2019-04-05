@@ -6,6 +6,19 @@ import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 import jsinterop.base.JsPropertyMap;
+import us.ascendtech.client.aggrid.events.*;
+import us.ascendtech.client.aggrid.events.column.ColumnMovedHandler;
+import us.ascendtech.client.aggrid.events.column.ColumnPinnedHandler;
+import us.ascendtech.client.aggrid.events.column.ColumnPivotChangedHandler;
+import us.ascendtech.client.aggrid.events.column.ColumnResizedHandler;
+import us.ascendtech.client.aggrid.events.column.ColumnRowGroupChangedHandler;
+import us.ascendtech.client.aggrid.events.column.ColumnValueChangedHandler;
+import us.ascendtech.client.aggrid.events.column.ColumnVisibleHandler;
+import us.ascendtech.client.aggrid.events.row.*;
+import us.ascendtech.client.aggrid.events.rowdrag.RowDragEndHandler;
+import us.ascendtech.client.aggrid.events.rowdrag.RowDragEnterHandler;
+import us.ascendtech.client.aggrid.events.rowdrag.RowDragLeaveHandler;
+import us.ascendtech.client.aggrid.events.rowdrag.RowDragMoveHandler;
 
 @JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
 public class GridOptions<T> {
@@ -15,8 +28,6 @@ public class GridOptions<T> {
 	private ColumnApi<T> columnApi;
 	private JsArray<ColumnDefinition> columnDefs;
 	private JsArray<T> rowData;
-	private AgReadyEvent<T> agReadyEvent;
-	private GridReady<T> gridReady;
 	private String rowModelType;
 	private DataSource<T> datasource;
 	private int cacheBlockSize;
@@ -33,6 +44,66 @@ public class GridOptions<T> {
 	private int rowHeight;
 	private boolean suppressCellSelection;
 	private boolean suppressRowClickSelection;
+
+	/** Events **/
+	private CellClickedHandler onCellClicked;
+	private CellDoubleClickedHandler onCellDoubleClicked;
+	private CellFocusedHandler onCellFocused;
+	private CellMouseOutHandler onCellMouseOver;
+	private CellMouseOutHandler onCellMouseOut;
+	private CellMouseDownHandler onCellMouseDown;
+	private RowClickedHandler onRowClicked;
+	private RowDoubleClickedHandler onRowDoubleClicked;
+	private RowSelectedHandler onRowSelected;
+	private SelectionChangedHandler onSelectionChanged;
+	private CellContextMenuHandler onCellContextMenu;
+	private RangeSelectionChangedHandler onRangeSelectionChanged;
+	private CellValueChangedHandler onCellValueChanged;
+	private RowValueChangedHandler onRowValueChanged;
+	private CellEditingStartedHandler onCellEditingStarted;
+	private CellEditingStoppedHandler onCellEditingStopped;
+	private RowEditingStartedHandler onRowEditingStarted;
+	private RowEditingStoppedHandler onRowEditingStopped;
+	private SortChangedHandler onSortChanged;
+	private FilterChangedHandler onFilterChanged;
+	private FilterModifiedHandler onFilterModified;
+	private RowDragEnterHandler onRowDragEnter;
+	private RowDragMoveHandler onRowDragMove;
+	private RowDragLeaveHandler onRowDragLeave;
+	private RowDragEndHandler onRowDragEnd;
+	private ColumnVisibleHandler onColumnVisible;
+	private ColumnPinnedHandler onColumnPinned;
+	private ColumnResizedHandler onColumnResized;
+	private ColumnMovedHandler onColumnMoved;
+	private ColumnRowGroupChangedHandler onColumnRowGroupChanged;
+	private ColumnValueChangedHandler onColumnValueChanged;
+	private ColumnPivotModeChangedHandler onColumnPivotModeChanged;
+	private ColumnPivotChangedHandler onColumnPivotChanged;
+	private NewColumnsLoadedHandler onNewColumnsLoaded;
+	private GridColumnsChangedHandler onGridColumnsChanged;
+	private DisplayedColumnsChangedHandler onDisplayedColumnsChanged;
+	private VirtualColumnsChangedHandler onVirtualColumnsChanged;
+	private ColumnEverythingChangedHandler onColumnEverythingChanged;
+	private GridReadyHandler onGridReady;
+	private GridSizeChangedHandler onGridSizeChanged;
+	private ModelUpdatedHandler onModelUpdated;
+	private FirstDataRendereredHandler onFirstDataRendered;
+	private RowGroupOpenedHandler onRowGroupOpened;
+	private ExpandCollapseAllHandler onExpandOrCollapseAll;
+	private PaginationChangedHandler onPaginationChanged;
+	private PinnedRowDataChangedHandler onPinnedRowDataChanged;
+	private VirtualRowRemovedHandler onVirtualRowRemoved;
+	private ViewportChangedHandler onViewportChanged;
+	private BodyScrollHandler onBodyScroll;
+	private DragStartedHandler onDragStarted;
+	private DragStoppedHandler onDragStopped;
+	private RowDataChangedHandler onRowDataChanged;
+	private RowDataUpdatedHandler onRowDataUpdated;
+	private ToolPanelVisibleChangedHandler onToolPanelVisibleChanged;
+	private ComponentStateChangedHandler onComponentStateChanged;
+	private AnimationQueueEmptyHandler onAnimationQueueEmpty;
+	private CellKeyDownHandler onCellKeyDown;
+	private CellKeyPressHandler onCellKeyPress;
 
 	@JsFunction
 	public interface GetRowNodeId<T> {
@@ -87,26 +158,6 @@ public class GridOptions<T> {
 	@JsOverlay
 	public final void setColumnApi(ColumnApi<T> columnApi) {
 		this.columnApi = columnApi;
-	}
-
-	@JsOverlay
-	public final void setAgReadyEvent(AgReadyEvent<T> agReadyEvent) {
-		this.agReadyEvent = agReadyEvent;
-	}
-
-	@JsOverlay
-	public final AgReadyEvent<T> getAgReadyEvent() {
-		return agReadyEvent;
-	}
-
-	@JsOverlay
-	public final void setGridReady(GridReady<T> gridReady) {
-		this.gridReady = gridReady;
-	}
-
-	@JsOverlay
-	public final GridReady<T> getGridReady() {
-		return gridReady;
 	}
 
 	@JsOverlay
@@ -262,5 +313,295 @@ public class GridOptions<T> {
 	@JsOverlay
 	public final void setSuppressRowClickSelection(boolean suppressRowClickSelection) {
 		this.suppressRowClickSelection = suppressRowClickSelection;
+	}
+
+	@JsOverlay
+	public final void setOnCellClicked(CellClickedHandler onCellClicked) {
+		this.onCellClicked = onCellClicked;
+	}
+
+	@JsOverlay
+	public final void setOnCellDoubleClicked(CellDoubleClickedHandler onCellDoubleClicked) {
+		this.onCellDoubleClicked = onCellDoubleClicked;
+	}
+
+	@JsOverlay
+	public final void setOnCellFocused(CellFocusedHandler onCellFocused) {
+		this.onCellFocused = onCellFocused;
+	}
+
+	@JsOverlay
+	public final void setOnCellMouseOver(CellMouseOutHandler onCellMouseOver) {
+		this.onCellMouseOver = onCellMouseOver;
+	}
+
+	@JsOverlay
+	public final void setOnCellMouseOut(CellMouseOutHandler onCellMouseOut) {
+		this.onCellMouseOut = onCellMouseOut;
+	}
+
+	@JsOverlay
+	public final void setOnCellMouseDown(CellMouseDownHandler onCellMouseDown) {
+		this.onCellMouseDown = onCellMouseDown;
+	}
+
+	@JsOverlay
+	public final void setOnRowClicked(RowClickedHandler onRowClicked) {
+		this.onRowClicked = onRowClicked;
+	}
+
+	@JsOverlay
+	public final void setOnRowDoubleClicked(RowDoubleClickedHandler onRowDoubleClicked) {
+		this.onRowDoubleClicked = onRowDoubleClicked;
+	}
+
+	@JsOverlay
+	public final void setOnRowSelected(RowSelectedHandler onRowSelected) {
+		this.onRowSelected = onRowSelected;
+	}
+
+	@JsOverlay
+	public final void setOnSelectionChanged(SelectionChangedHandler onSelectionChanged) {
+		this.onSelectionChanged = onSelectionChanged;
+	}
+
+	@JsOverlay
+	public final void setOnCellContextMenu(CellContextMenuHandler onCellContextMenu) {
+		this.onCellContextMenu = onCellContextMenu;
+	}
+
+	@JsOverlay
+	public final void setOnRangeSelectionChanged(RangeSelectionChangedHandler onRangeSelectionChanged) {
+		this.onRangeSelectionChanged = onRangeSelectionChanged;
+	}
+
+	@JsOverlay
+	public final void setOnCellValueChanged(CellValueChangedHandler onCellValueChanged) {
+		this.onCellValueChanged = onCellValueChanged;
+	}
+
+	@JsOverlay
+	public final void setOnRowValueChanged(RowValueChangedHandler onRowValueChanged) {
+		this.onRowValueChanged = onRowValueChanged;
+	}
+
+	@JsOverlay
+	public final void setOnCellEditingStarted(CellEditingStartedHandler onCellEditingStarted) {
+		this.onCellEditingStarted = onCellEditingStarted;
+	}
+
+	@JsOverlay
+	public final void setOnCellEditingStopped(CellEditingStoppedHandler onCellEditingStopped) {
+		this.onCellEditingStopped = onCellEditingStopped;
+	}
+
+	@JsOverlay
+	public final void setOnRowEditingStarted(RowEditingStartedHandler onRowEditingStarted) {
+		this.onRowEditingStarted = onRowEditingStarted;
+	}
+
+	@JsOverlay
+	public final void setOnRowEditingStopped(RowEditingStoppedHandler onRowEditingStopped) {
+		this.onRowEditingStopped = onRowEditingStopped;
+	}
+
+	@JsOverlay
+	public final void setOnSortChanged(SortChangedHandler onSortChanged) {
+		this.onSortChanged = onSortChanged;
+	}
+
+	@JsOverlay
+	public final void setOnFilterChanged(FilterChangedHandler onFilterChanged) {
+		this.onFilterChanged = onFilterChanged;
+	}
+
+	@JsOverlay
+	public final void setOnFilterModified(FilterModifiedHandler onFilterModified) {
+		this.onFilterModified = onFilterModified;
+	}
+
+	@JsOverlay
+	public final void setOnRowDragEnter(RowDragEnterHandler onRowDragEnter) {
+		this.onRowDragEnter = onRowDragEnter;
+	}
+
+	@JsOverlay
+	public final void setOnRowDragMove(RowDragMoveHandler onRowDragMove) {
+		this.onRowDragMove = onRowDragMove;
+	}
+
+	@JsOverlay
+	public final void setOnRowDragLeave(RowDragLeaveHandler onRowDragLeave) {
+		this.onRowDragLeave = onRowDragLeave;
+	}
+
+	@JsOverlay
+	public final void setOnRowDragEnd(RowDragEndHandler onRowDragEnd) {
+		this.onRowDragEnd = onRowDragEnd;
+	}
+
+	@JsOverlay
+	public final void setOnColumnVisible(ColumnVisibleHandler onColumnVisible) {
+		this.onColumnVisible = onColumnVisible;
+	}
+
+	@JsOverlay
+	public final void setOnColumnPinned(ColumnPinnedHandler onColumnPinned) {
+		this.onColumnPinned = onColumnPinned;
+	}
+
+	@JsOverlay
+	public final void setOnColumnResized(ColumnResizedHandler onColumnResized) {
+		this.onColumnResized = onColumnResized;
+	}
+
+	@JsOverlay
+	public final void setOnColumnMoved(ColumnMovedHandler onColumnMoved) {
+		this.onColumnMoved = onColumnMoved;
+	}
+
+	@JsOverlay
+	public final void setOnColumnRowGroupChanged(ColumnRowGroupChangedHandler onColumnRowGroupChanged) {
+		this.onColumnRowGroupChanged = onColumnRowGroupChanged;
+	}
+
+	@JsOverlay
+	public final void setOnColumnValueChanged(ColumnValueChangedHandler onColumnValueChanged) {
+		this.onColumnValueChanged = onColumnValueChanged;
+	}
+
+	@JsOverlay
+	public final void setOnColumnPivotModeChanged(ColumnPivotModeChangedHandler onColumnPivotModeChanged) {
+		this.onColumnPivotModeChanged = onColumnPivotModeChanged;
+	}
+
+	@JsOverlay
+	public final void setOnColumnPivotChanged(ColumnPivotChangedHandler onColumnPivotChanged) {
+		this.onColumnPivotChanged = onColumnPivotChanged;
+	}
+
+	@JsOverlay
+	public final void setOnNewColumnsLoaded(NewColumnsLoadedHandler newColumnsLoaded) {
+		this.onNewColumnsLoaded = newColumnsLoaded;
+	}
+
+	@JsOverlay
+	public final void setOnGridColumnsChanged(GridColumnsChangedHandler onGridColumnsChanged) {
+		this.onGridColumnsChanged = onGridColumnsChanged;
+	}
+
+	@JsOverlay
+	public final void setOnDisplayedColumnsChanged(DisplayedColumnsChangedHandler onDisplayedColumnsChanged) {
+		this.onDisplayedColumnsChanged = onDisplayedColumnsChanged;
+	}
+
+	@JsOverlay
+	public final void setOnVirtualColumnsChanged(VirtualColumnsChangedHandler onVirtualColumnsChanged) {
+		this.onVirtualColumnsChanged = onVirtualColumnsChanged;
+	}
+
+	@JsOverlay
+	public final void setOnColumnEverythingChanged(ColumnEverythingChangedHandler onColumnEverythingChanged) {
+		this.onColumnEverythingChanged = onColumnEverythingChanged;
+	}
+
+	@JsOverlay
+	public final void setOnGridReady(GridReadyHandler onGridReady) {
+		this.onGridReady = onGridReady;
+	}
+
+	@JsOverlay
+	public final void setOnGridSizeChanged(GridSizeChangedHandler onGridSizeChanged) {
+		this.onGridSizeChanged = onGridSizeChanged;
+	}
+
+	@JsOverlay
+	public final void setOnModelUpdated(ModelUpdatedHandler onModelUpdated) {
+		this.onModelUpdated = onModelUpdated;
+	}
+
+	@JsOverlay
+	public final void setOnFirstDataRendered(FirstDataRendereredHandler onFirstDataRendered) {
+		this.onFirstDataRendered = onFirstDataRendered;
+	}
+
+	@JsOverlay
+	public final void setOnRowGroupOpened(RowGroupOpenedHandler onRowGroupOpened) {
+		this.onRowGroupOpened = onRowGroupOpened;
+	}
+
+	@JsOverlay
+	public final void setOnExpandOrCollapseAll(ExpandCollapseAllHandler onExpandOrCollapseAll) {
+		this.onExpandOrCollapseAll = onExpandOrCollapseAll;
+	}
+
+	@JsOverlay
+	public final void setOnPaginationChanged(PaginationChangedHandler onPaginationChanged) {
+		this.onPaginationChanged = onPaginationChanged;
+	}
+
+	@JsOverlay
+	public final void setOnPinnedRowDataChanged(PinnedRowDataChangedHandler onPinnedRowDataChanged) {
+		this.onPinnedRowDataChanged = onPinnedRowDataChanged;
+	}
+
+	@JsOverlay
+	public final void setOnVirtualRowRemoved(VirtualRowRemovedHandler onVirtualRowRemoved) {
+		this.onVirtualRowRemoved = onVirtualRowRemoved;
+	}
+
+	@JsOverlay
+	public final void setOnViewportChanged(ViewportChangedHandler onViewportChanged) {
+		this.onViewportChanged = onViewportChanged;
+	}
+
+	@JsOverlay
+	public final void setOnBodyScroll(BodyScrollHandler onBodyScroll) {
+		this.onBodyScroll = onBodyScroll;
+	}
+
+	@JsOverlay
+	public final void setOnDragStarted(DragStartedHandler onDragStarted) {
+		this.onDragStarted = onDragStarted;
+	}
+
+	@JsOverlay
+	public final void setOnDragStopped(DragStoppedHandler onDragStopped) {
+		this.onDragStopped = onDragStopped;
+	}
+
+	@JsOverlay
+	public final void setOnRowDataChanged(RowDataChangedHandler onRowDataChanged) {
+		this.onRowDataChanged = onRowDataChanged;
+	}
+
+	@JsOverlay
+	public final void setOnRowDataUpdated(RowDataUpdatedHandler onRowDataUpdated) {
+		this.onRowDataUpdated = onRowDataUpdated;
+	}
+
+	@JsOverlay
+	public final void setOnToolPanelVisibleChanged(ToolPanelVisibleChangedHandler onToolPanelVisibleChanged) {
+		this.onToolPanelVisibleChanged = onToolPanelVisibleChanged;
+	}
+
+	@JsOverlay
+	public final void setOnComponentStateChanged(ComponentStateChangedHandler onComponentStateChanged) {
+		this.onComponentStateChanged = onComponentStateChanged;
+	}
+
+	@JsOverlay
+	public final void setOnAnimationQueueEmpty(AnimationQueueEmptyHandler onAnimationQueueEmpty) {
+		this.onAnimationQueueEmpty = onAnimationQueueEmpty;
+	}
+
+	@JsOverlay
+	public final void setOnCellKeyDown(CellKeyDownHandler onCellKeyDown) {
+		this.onCellKeyDown = onCellKeyDown;
+	}
+
+	@JsOverlay
+	public final void setOnCellKeyPress(CellKeyPressHandler onCellKeyPress) {
+		this.onCellKeyPress = onCellKeyPress;
 	}
 }
