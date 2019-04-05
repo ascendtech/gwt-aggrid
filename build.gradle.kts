@@ -55,4 +55,16 @@ subprojects {
         resourceDirs = resourceDirs - file("src/main/java")
     }
 
+    val sourcesJar = tasks.register<Jar>("sourcesJar") {
+        classifier = "sources"
+        from(sourceSets.getByName("main").allSource)
+    }
+
+
+    artifacts.add("archives", sourcesJar)
+
+    tasks.withType<Jar> {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    }
+
 }
