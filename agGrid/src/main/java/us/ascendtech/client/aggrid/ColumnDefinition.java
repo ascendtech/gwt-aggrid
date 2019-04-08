@@ -28,6 +28,7 @@ public class ColumnDefinition<T> {
 	private Renderer<T> cellRenderer;
 	private ComparatorFunction<T> comparator;
 	private String sort;
+	private JsArray<String> sortingOrder;
 	private CellRendererParams cellRendererParams;
 	private String pinned;
 
@@ -222,6 +223,16 @@ public class ColumnDefinition<T> {
 	@JsOverlay
 	public final void setSort(String sort) {
 		this.sort = sort;
+	}
+
+	@JsOverlay
+	public final JsArray<String> getSortingOrder() {
+		return sortingOrder;
+	}
+
+	@JsOverlay
+	public final void setSortingOrder(JsArray<String> sortingOrder) {
+		this.sortingOrder = sortingOrder;
 	}
 
 	@JsOverlay
