@@ -21,6 +21,7 @@ public class ColumnDefinition<T> {
 	private String field;
 	private String colId;
 	private Object type;
+	private String filter;
 	private int width;
 	private int minWidth;
 	private int maxWidth;
@@ -233,6 +234,16 @@ public class ColumnDefinition<T> {
 	@JsOverlay
 	public final void setType(Object type) {
 		this.type = type;
+	}
+
+	@JsOverlay
+	public final String getFilter() {
+		return filter;
+	}
+
+	@JsOverlay
+	public final void setFilter(String filter) {
+		this.filter = filter;
 	}
 
 	@JsOverlay
