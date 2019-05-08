@@ -26,13 +26,14 @@ public class GridOptions<T> {
 	private boolean suppressPropertyNamesCheck;
 	private GridApi<T> api;
 	private ColumnApi<T> columnApi;
-	private JsArray<ColumnDefinition> columnDefs;
+	private JsArray<ColumnDefinition<T>> columnDefs;
 	private JsArray<T> rowData;
 	private String rowModelType;
 	private DataSource<T> datasource;
 	private int cacheBlockSize;
 	private JsPropertyMap<Object> components;
 	private boolean animateRows;
+	private boolean pagination;
 	private int paginationPageSize;
 	private boolean debug;
 	private int cacheOverflowSize;
@@ -131,12 +132,12 @@ public class GridOptions<T> {
 	}
 
 	@JsOverlay
-	public final JsArray<ColumnDefinition> getColumnDefs() {
+	public final JsArray<ColumnDefinition<T>> getColumnDefs() {
 		return columnDefs;
 	}
 
 	@JsOverlay
-	public final void setColumnDefs(JsArray<ColumnDefinition> columnDefs) {
+	public final void setColumnDefs(JsArray<ColumnDefinition<T>> columnDefs) {
 		this.columnDefs = columnDefs;
 	}
 
@@ -208,6 +209,16 @@ public class GridOptions<T> {
 	@JsOverlay
 	public final void setAnimateRows(boolean animateRows) {
 		this.animateRows = animateRows;
+	}
+
+	@JsOverlay
+	public final boolean isPagination() {
+		return pagination;
+	}
+
+	@JsOverlay
+	public final void setPagination(boolean pagination) {
+		this.pagination = pagination;
 	}
 
 	@JsOverlay
