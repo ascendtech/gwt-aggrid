@@ -46,6 +46,7 @@ public class ColumnDefinition<T> {
 	private CellRenderer<T> cellRenderer;
 	private CellRenderer<T> floatingCellRenderer;
 	private CellRendererSelector<T> cellRendererSelector;
+	private String cellRendererFramework;
 	private CellEditor<T> cellEditor;
 	private ValueGetter<T> valueGetter;
 	private ValueFormatter<T> valueFormatter;
@@ -459,6 +460,16 @@ public class ColumnDefinition<T> {
 	@JsOverlay
 	public final void setCellRendererSelector(CellRendererSelector<T> cellRendererSelector) {
 		this.cellRendererSelector = cellRendererSelector;
+	}
+
+	@JsOverlay
+	public final String getCellRendererFramework() {
+		return cellRendererFramework;
+	}
+
+	@JsOverlay
+	public final void setCellRendererFramework(String cellRendererFramework) {
+		this.cellRendererFramework = cellRendererFramework;
 	}
 
 	@JsOverlay
