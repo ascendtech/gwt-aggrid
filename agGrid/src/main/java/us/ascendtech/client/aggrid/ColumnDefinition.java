@@ -1,6 +1,7 @@
 package us.ascendtech.client.aggrid;
 
 import elemental2.core.JsArray;
+import elemental2.dom.CSSStyleDeclaration;
 import elemental2.dom.HTMLElement;
 import jsinterop.annotations.JsFunction;
 import jsinterop.annotations.JsOverlay;
@@ -40,7 +41,7 @@ public class ColumnDefinition<T> {
 	private boolean checkboxSelection;
 	private boolean rowDrag;
 	private Object cellClass;
-	private Object cellStyle;
+	private CellStyle cellStyle;
 	private boolean editable;
 	private CellValueChanged<T> onCellValueChanged;
 	private CellRenderer<T> cellRenderer;
@@ -155,6 +156,11 @@ public class ColumnDefinition<T> {
 	@JsFunction
 	public interface ValueParser<T> {
 		String getParsedValue(CellEditorParams<T> param);
+	}
+
+	@JsFunction
+	public interface CellStyle {
+		CSSStyleDeclaration style(AGGridParams param);
 	}
 
 	@JsOverlay
@@ -423,12 +429,7 @@ public class ColumnDefinition<T> {
 	}
 
 	@JsOverlay
-	public final Object getCellStyle() {
-		return cellStyle;
-	}
-
-	@JsOverlay
-	public final void setCellStyle(Object cellStyle) {
+	public final void setCellStyle(CellStyle cellStyle) {
 		this.cellStyle = cellStyle;
 	}
 
