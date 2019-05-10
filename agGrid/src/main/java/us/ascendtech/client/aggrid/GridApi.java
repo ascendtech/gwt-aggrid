@@ -219,6 +219,9 @@ public class GridApi<T> {
 	public native void ensureNodeVisible(ColumnDefinition.Comparator<T> comparator, String position);
 
 	@JsMethod
+	public native void ensureColumnVisible(String colId);
+
+	@JsMethod
 	public native JsObject getHorizontalPixelRange();
 
 	@JsMethod
