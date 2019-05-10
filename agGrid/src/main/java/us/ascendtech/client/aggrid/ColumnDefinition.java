@@ -87,6 +87,7 @@ public class ColumnDefinition<T> {
 	private boolean marryChildren;
 	private boolean openByDefault;
 	private Tooltip<T> headerGroupTooltip;
+	private JsArray<String> sortingOrder;
 
 	@JsFunction
 	public interface SuppressKeyboardEvent<T> {
@@ -785,5 +786,15 @@ public class ColumnDefinition<T> {
 	@JsOverlay
 	public final void setHeaderGroupTooltip(Tooltip<T> headerGroupTooltip) {
 		this.headerGroupTooltip = headerGroupTooltip;
+	}
+
+	@JsOverlay
+	public final JsArray<String> getSortingOrder() {
+		return sortingOrder;
+	}
+
+	@JsOverlay
+	public final void setSortingOrder(JsArray<String> sortingOrder) {
+		this.sortingOrder = sortingOrder;
 	}
 }
