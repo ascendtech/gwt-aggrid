@@ -9,6 +9,7 @@ public class FocusedCell<T> {
 
 	private int rowIndex;
 	private Column<T> column;
+	private String floating;
 
 	@JsOverlay
 	public final int getRowIndex() {
