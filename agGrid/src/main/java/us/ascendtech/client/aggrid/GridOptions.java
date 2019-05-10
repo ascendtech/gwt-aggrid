@@ -45,6 +45,7 @@ public class GridOptions<T> {
 	private int rowHeight;
 	private boolean suppressCellSelection;
 	private boolean suppressRowClickSelection;
+	private RowHeight<T> getRowHeight;
 
 	/** Events **/
 	private CellClickedHandler onCellClicked;
@@ -109,6 +110,16 @@ public class GridOptions<T> {
 	@JsFunction
 	public interface GetRowNodeId<T> {
 		String getRowNodeId(T item);
+	}
+
+	@JsFunction
+	public interface RowHeight<T> {
+		int getRowHeight(AGGridParams<T> params);
+	}
+
+	@JsOverlay
+	public final void setGetRowHeight(RowHeight<T> getRowHeight) {
+		this.getRowHeight = getRowHeight;
 	}
 
 	@JsOverlay
