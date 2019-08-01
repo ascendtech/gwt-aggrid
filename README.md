@@ -83,7 +83,7 @@ columnTwo.setColId("columnOne");
 columnTwo.setSortable(true);
 columnTwo.setResizable(true);
 columnTwo.setCellRenderer(params -> {
-	HTMLDivElement alertButton = (HTMLDivElement) DomGlobal.document.createElement("button");
+	HTMLButtonElement alertButton = (HTMLButtonElement) DomGlobal.document.createElement("button");
 	
 	alertButton.addEventListener("click", event -> {
 		DomGlobal.alert("button clicked!")
