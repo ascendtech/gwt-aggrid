@@ -5,6 +5,7 @@ import elemental2.core.JsObject;
 import elemental2.dom.Element;
 import elemental2.dom.EventListener;
 import elemental2.dom.MouseEvent;
+import jsinterop.annotations.JsFunction;
 import jsinterop.annotations.JsMethod;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
@@ -65,17 +66,22 @@ public class GridApi<T> {
 	@JsMethod
 	public native RowNode<T> getRowNode(String id);
 
-	@JsMethod
-	public native void forEachNode(RowNode<T> node, int index);
+	@JsFunction
+	public interface RowNodeHandler<T> {
+		void forNode(RowNode<T> node, int index);
+	}
 
 	@JsMethod
-	public native void forEachNodeAfterFilter(RowNode<T> node, int index);
+	public native void forEachNode(RowNodeHandler<T> rowNodeHandler);
 
 	@JsMethod
-	public native void forEachNodeAfterFilterAndSort(RowNode<T> node, int index);
+	public native void forEachNodeAfterFilter(RowNodeHandler<T> rowNodeHandler);
 
 	@JsMethod
-	public native void forEachLeafNode(RowNode<T> node, int index);
+	public native void forEachNodeAfterFilterAndSort(RowNodeHandler<T> rowNodeHandler);
+
+	@JsMethod
+	public native void forEachLeafNode(RowNodeHandler<T> rowNodeHandler);
 
 	@JsMethod
 	public native RowNode<T> getDisplayedRowAtIndex(int rowIndex);
