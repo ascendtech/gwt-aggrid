@@ -3,15 +3,14 @@ import org.ajoberstar.reckon.gradle.ReckonExtension
 plugins {
     java
     idea
-    id("us.ascendtech.gwt.lib") version "0.4.16" apply false
-    id("org.ajoberstar.reckon") version "0.8.0"
+    id("us.ascendtech.gwt.lib") version "0.5.4" apply false
+    id("org.ajoberstar.reckon") version "0.13.0"
 }
 
 configure<ReckonExtension> {
     scopeFromProp()
     stageFromProp("rc", "final")
 }
-
 
 defaultTasks("build")
 
@@ -67,7 +66,8 @@ subprojects {
     }
 
     java {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
+
 }

@@ -3,7 +3,7 @@ plugins {
 }
 
 gwt {
-    libs.add("elemento-core")
+    libs.add("elemento-core-1.0")
     includeGwtUser = false
 }
 
