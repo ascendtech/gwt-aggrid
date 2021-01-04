@@ -88,6 +88,7 @@ public class ColumnDefinition<T> {
 	private boolean openByDefault;
 	private Tooltip<T> headerGroupTooltip;
 	private JsArray<String> sortingOrder;
+	private boolean wrapText;
 
 	@JsFunction
 	public interface SuppressKeyboardEvent<T> {
@@ -791,5 +792,15 @@ public class ColumnDefinition<T> {
 	@JsOverlay
 	public final void setSortingOrder(JsArray<String> sortingOrder) {
 		this.sortingOrder = sortingOrder;
+	}
+
+	@JsOverlay
+	public final boolean isWrapText() {
+		return wrapText;
+	}
+
+	@JsOverlay
+	public final void setWrapText(boolean wrapText) {
+		this.wrapText = wrapText;
 	}
 }
