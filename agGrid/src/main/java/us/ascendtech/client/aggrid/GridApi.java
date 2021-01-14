@@ -195,6 +195,9 @@ public class GridApi<T> {
 	@JsMethod
 	public native void dispatchEvent(AgEvent event);
 
+	@JsMethod
+	public native void onFilterChanged();
+
 	/*** Row Groups ***/
 
 	@JsMethod
