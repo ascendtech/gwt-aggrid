@@ -20,6 +20,7 @@ public class RowNode<T> {
 	private int rowHeight;
 	private int rowTop;
 	private String quickFilterAggregateText;
+	private boolean selected;
 
 	@JsOverlay
 	public final String getId() {
@@ -149,5 +150,15 @@ public class RowNode<T> {
 	@JsOverlay
 	public final void setQuickFilterAggregateText(String quickFilterAggregateText) {
 		this.quickFilterAggregateText = quickFilterAggregateText;
+	}
+
+	@JsOverlay
+	public final boolean isSelected() {
+		return selected;
+	}
+
+	@JsOverlay
+	public final void setSelected(boolean selected) {
+		this.selected = selected;
 	}
 }

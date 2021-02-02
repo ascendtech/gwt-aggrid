@@ -39,6 +39,8 @@ public class ColumnDefinition<T> {
 	private String tooltipField;
 	private Tooltip<T> tooltip;
 	private boolean checkboxSelection;
+	private boolean headerCheckboxSelection;
+	private boolean headerCheckboxSelectionFilteredOnly;
 	private boolean rowDrag;
 	private Object cellClass;
 	private JsPropertyMap<Object> cellStyle;
@@ -403,6 +405,26 @@ public class ColumnDefinition<T> {
 	@JsOverlay
 	public final void setCheckboxSelection(boolean checkboxSelection) {
 		this.checkboxSelection = checkboxSelection;
+	}
+
+	@JsOverlay
+	public final boolean isHeaderCheckboxSelection() {
+		return headerCheckboxSelection;
+	}
+
+	@JsOverlay
+	public final void setHeaderCheckboxSelection(boolean headerCheckboxSelection) {
+		this.headerCheckboxSelection = headerCheckboxSelection;
+	}
+
+	@JsOverlay
+	public final boolean isHeaderCheckboxSelectionFilteredOnly() {
+		return headerCheckboxSelectionFilteredOnly;
+	}
+
+	@JsOverlay
+	public final void setHeaderCheckboxSelectionFilteredOnly(boolean headerCheckboxSelectionFilteredOnly) {
+		this.headerCheckboxSelectionFilteredOnly = headerCheckboxSelectionFilteredOnly;
 	}
 
 	@JsOverlay
