@@ -2,6 +2,8 @@ plugins {
     java
     idea
     id("us.ascendtech.gwt.lib") version "0.9.2" apply false
+    signing
+    `maven-publish`
     alias(libs.plugins.reckon)
 }
 
@@ -16,18 +18,19 @@ reckon {
 
 defaultTasks("build")
 
+allprojects {
+    group = "us.ascendtech"
+}
+
 subprojects {
 
     apply(plugin = "java")
-    apply(plugin = "maven-publish")
     apply(plugin = "idea")
+    apply(plugin = "signing")
+    apply(plugin = "maven-publish")
 
     defaultTasks("build")
     group = "us.ascendtech"
-
-    repositories {
-        mavenCentral()
-    }
 
     configurations.all {
         // check for updates every build more than 10 minutes apart (for snapshots)
@@ -73,4 +76,48 @@ subprojects {
         targetCompatibility = JavaVersion.VERSION_21
     }
 
+    publishing {
+        publications {
+            create<MavenPublication>("mavenJava") {
+                from(components["java"])
+                artifact(tasks["sourcesJar"])
+                pom {
+                    url.set("https://github.com/ascendtech/gwt-aggrid")
+                    licenses {
+                        license {
+                            name.set("The Apache License, Version 2.0")
+                            url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
+                        }
+                    }
+                    developers {
+                        developer {
+                            id.set("mdavis")
+                            name.set("Matt Davis")
+                            email.set("matt.davis@ascend-tech.us")
+                            organization.set("Ascendant Software Technology, LLC")
+                            organizationUrl.set("https://www.ascend-tech.us")
+                        }
+                        developer {
+                            id.set("payam.meyer")
+                            name.set("Payam Mayer")
+                            email.set("payam.meyer@ascend-tech.us")
+                            organization.set("Ascendant Software Technology, LLC")
+                            organizationUrl.set("https://www.ascend-tech.us")
+                        }
+                    }
+                    scm {
+                        connection.set("git@github.com:ascendtech/gwt-aggrid.git")
+                        developerConnection.set("git@github.com:ascendtech/gwt-aggrid.git")
+                        url.set("https://github.com/ascendtech/gwt-aggrid")
+                    }
+                    name.set(project.name)
+                    description.set(project.name)
+                }
+            }
+        }
+    }
+
+    repositories {
+        mavenCentral()
+    }
 }
