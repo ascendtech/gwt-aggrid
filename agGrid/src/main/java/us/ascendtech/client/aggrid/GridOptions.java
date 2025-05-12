@@ -41,11 +41,12 @@ public class GridOptions<T> {
 	private int infiniteInitialRowCount;
 	private int maxBlocksInCache;
 	private GetRowNodeId<T> getRowNodeId;
-	private String rowSelection;
+	private RowSelection rowSelection;
 	private int rowHeight;
 	private boolean suppressCellSelection;
 	private boolean suppressRowClickSelection;
 	private RowHeight<T> getRowHeight;
+	private SelectionColumnDef selectionColumnDef;
 
 	/** Events **/
 	private CellClickedHandler onCellClicked;
@@ -298,12 +299,19 @@ public class GridOptions<T> {
 	}
 
 	@JsOverlay
-	public final String getRowSelection() {
+	public final RowSelection getRowSelection() {
 		return rowSelection;
 	}
 
 	@JsOverlay
 	public final void setRowSelection(String rowSelection) {
+		RowSelection selection = new RowSelection();
+		selection.setMode(rowSelection);
+		setRowSelection(selection);
+	}
+
+	@JsOverlay
+	public final void setRowSelection(RowSelection rowSelection) {
 		this.rowSelection = rowSelection;
 	}
 
@@ -625,5 +633,15 @@ public class GridOptions<T> {
 	@JsOverlay
 	public final void setOnCellKeyPress(CellKeyPressHandler onCellKeyPress) {
 		this.onCellKeyPress = onCellKeyPress;
+	}
+
+	@JsOverlay
+	public final SelectionColumnDef getSelectionColumnDef() {
+		return selectionColumnDef;
+	}
+
+	@JsOverlay
+	public final void setSelectionColumnDef(SelectionColumnDef selectionColumnDef) {
+		this.selectionColumnDef = selectionColumnDef;
 	}
 }

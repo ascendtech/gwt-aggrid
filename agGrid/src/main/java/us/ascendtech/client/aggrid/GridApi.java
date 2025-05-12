@@ -14,12 +14,12 @@ import us.ascendtech.client.aggrid.events.AgEvent;
 @JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
 public class GridApi<T> {
 
+	@JsMethod
+	public native void setGridOption(String optionName, Object option);
+
 	/*** Columns ***/
 	@JsMethod
 	public native void sizeColumnsToFit();
-
-	@JsMethod
-	public native void setColumnDefs(JsArray<ColumnDefinition<T>> columnDefs);
 
 	/*** Data ***/
 	@JsMethod
@@ -355,5 +355,14 @@ public class GridApi<T> {
 
 	@JsMethod
 	public native void purgeServerSideCache(String route);
+
+	@JsMethod
+	public native void resetColumnState();
+
+	@JsMethod
+	public native void autoSizeColumns(JsArray<String> colIds);
+
+	@JsMethod
+	public native JsArray<ColumnDefinition<T>> getAllDisplayedColumns();
 
 }
