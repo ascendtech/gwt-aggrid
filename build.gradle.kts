@@ -3,21 +3,25 @@ import org.ajoberstar.reckon.gradle.ReckonExtension
 plugins {
     java
     idea
-    id("us.ascendtech.gwt.lib") version "0.5.4" apply false
-    id("org.ajoberstar.reckon") version "0.13.0"
+    id("us.ascendtech.gwt.lib") version "0.9.2" apply false
+    alias(libs.plugins.reckon)
 }
 
-configure<ReckonExtension> {
-    scopeFromProp()
-    stageFromProp("rc", "final")
+reckon {
+    setDefaultInferredScope("patch")
+    setScopeCalc(calcScopeFromProp())
+    snapshots()
+    stages("beta", "final")
+    setStageCalc(calcStageFromProp())
 }
+
 
 defaultTasks("build")
 
 subprojects {
 
     apply(plugin = "java")
-    apply(plugin = "maven")
+    apply(plugin = "maven-publish")
     apply(plugin = "idea")
 
     defaultTasks("build")
@@ -55,8 +59,9 @@ subprojects {
     }
 
     val sourcesJar = tasks.register<Jar>("sourcesJar") {
-        classifier = "sources"
-        from(sourceSets.getByName("main").allSource)
+        dependsOn(JavaPlugin.CLASSES_TASK_NAME)
+        archiveClassifier.set("sources")
+        from(sourceSets.main.get().allJava)
     }
 
     artifacts.add("archives", sourcesJar)
