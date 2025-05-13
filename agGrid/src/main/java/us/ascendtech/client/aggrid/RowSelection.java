@@ -49,5 +49,6 @@ public class RowSelection {
 
 	@JsOverlay
 	public final void setHeaderCheckbox(boolean headerCheckbox) {
+		this.headerCheckbox = headerCheckbox;
 	}
 }
