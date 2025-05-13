@@ -10,6 +10,7 @@ public class RowSelection {
 	private String mode;
 	private boolean enableClickSelection;
 	private boolean checkboxes;
+	private boolean headerCheckbox;
 
 	@JsOverlay
 	public final String getMode() {
@@ -39,5 +40,14 @@ public class RowSelection {
 	@JsOverlay
 	public final void setCheckboxes(boolean checkboxes) {
 		this.checkboxes = checkboxes;
+	}
+
+	@JsOverlay
+	public final boolean isHeaderCheckbox() {
+		return headerCheckbox;
+	}
+
+	@JsOverlay
+	public final void setHeaderCheckbox(boolean headerCheckbox) {
 	}
 }
