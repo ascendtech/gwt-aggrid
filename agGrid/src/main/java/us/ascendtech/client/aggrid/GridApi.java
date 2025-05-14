@@ -21,6 +21,9 @@ public class GridApi<T> {
 	@JsMethod
 	public native void sizeColumnsToFit();
 
+	@JsMethod
+	public native void setColumnDefs(JsArray<ColumnDefinition<T>> columnDefs);
+
 	/*** Data ***/
 	@JsMethod
 	public native void setRowData(JsArray<T> rowData);
