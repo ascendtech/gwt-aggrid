@@ -1,7 +1,7 @@
 plugins {
     java
     idea
-    id("us.ascendtech.gwt.lib") version "0.10.1" apply false
+    id("us.ascendtech.gwt.lib") version "0.11.1" apply false
     signing
     `maven-publish`
     alias(libs.plugins.reckon)
@@ -72,8 +72,8 @@ subprojects {
     }
 
     java {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     publishing {
