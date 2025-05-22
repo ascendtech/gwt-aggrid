@@ -1,6 +1,7 @@
 package us.ascendtech.client.aggrid;
 
 import elemental2.core.JsArray;
+import elemental2.core.JsObject;
 import jsinterop.annotations.JsFunction;
 import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
@@ -47,6 +48,7 @@ public class GridOptions<T> {
 	private boolean suppressRowClickSelection;
 	private RowHeight<T> getRowHeight;
 	private SelectionColumnDef selectionColumnDef;
+	private JsObject theme;
 
 	/** Events **/
 	private CellClickedHandler onCellClicked;
@@ -643,5 +645,15 @@ public class GridOptions<T> {
 	@JsOverlay
 	public final void setSelectionColumnDef(SelectionColumnDef selectionColumnDef) {
 		this.selectionColumnDef = selectionColumnDef;
+	}
+
+	@JsOverlay
+	public final JsObject getTheme() {
+		return theme;
+	}
+
+	@JsOverlay
+	public final void setTheme(JsObject theme) {
+		this.theme = theme;
 	}
 }
