@@ -16,8 +16,8 @@ Add AST Repo
 
 Add Dependency:
 ```gradle
-  compile 'us.ascendtech:agGrid:0.2.3'
-  compile 'us.ascendtech:agGrid:0.2.3:sources'
+  compile 'us.ascendtech:agGrid:0.3.0'
+  compile 'us.ascendtech:agGrid:0.3.0:sources'
 ```
 
 ### Maven
@@ -36,12 +36,12 @@ Add Dependency
   <dependency>
     <groupId>us.ascendtech</groupId>
     <artifactId>agGrid</artifactId>
-    <version>0.1.1</version>
+    <version>0.3.0</version>
   </dependency>
   <dependency>
     <groupId>us.ascendtech</groupId>
     <artifactId>agGrid</artifactId>
-    <version>0.1.1</version>
+    <version>0.3.0</version>
     <classifier>sources</classifier>
   </dependency>
 ```
