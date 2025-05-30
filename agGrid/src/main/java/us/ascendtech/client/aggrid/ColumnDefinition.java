@@ -15,6 +15,7 @@ import us.ascendtech.client.aggrid.events.row.CellDoubleClickedHandler;
 public class ColumnDefinition<T> {
 
 	private String headerName;
+	private String cellDataType;
 	private boolean columnGroupShow;
 	private Object headerClass;
 	private Object toolPanelClass;
@@ -170,6 +171,16 @@ public class ColumnDefinition<T> {
 	@JsOverlay
 	public final void setHeaderName(String headerName) {
 		this.headerName = headerName;
+	}
+
+	@JsOverlay
+	public final String getCellDataType() {
+		return cellDataType;
+	}
+
+	@JsOverlay
+	public final void setCellDataType(String cellDataType) {
+		this.cellDataType = cellDataType;
 	}
 
 	@JsOverlay
