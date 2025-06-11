@@ -8,41 +8,41 @@ import jsinterop.annotations.JsType;
 @JsType(isNative = true, namespace = JsPackage.GLOBAL, name = "Object")
 public class AGGridParams<T> {
 
-	private GridApi api;
-	private ColumnDefinition colDef;
-	private ColumnApi columnApi;
+	private GridApi<T> api;
+	private ColumnDefinition<T> colDef;
+	private ColumnApi<T> columnApi;
 	private Object context;
 	private T data;
 	private Object value;
 	private Element eGridCell;
 
 	@JsOverlay
-	public final GridApi getApi() {
+	public final GridApi<T> getApi() {
 		return api;
 	}
 
 	@JsOverlay
-	public final void setApi(GridApi api) {
+	public final void setApi(GridApi<T> api) {
 		this.api = api;
 	}
 
 	@JsOverlay
-	public final ColumnDefinition getColDef() {
+	public final ColumnDefinition<T> getColDef() {
 		return colDef;
 	}
 
 	@JsOverlay
-	public final void setColDef(ColumnDefinition colDef) {
+	public final void setColDef(ColumnDefinition<T> colDef) {
 		this.colDef = colDef;
 	}
 
 	@JsOverlay
-	public final ColumnApi getColumnApi() {
+	public final ColumnApi<T> getColumnApi() {
 		return columnApi;
 	}
 
 	@JsOverlay
-	public final void setColumnApi(ColumnApi columnApi) {
+	public final void setColumnApi(ColumnApi<T> columnApi) {
 		this.columnApi = columnApi;
 	}
 
