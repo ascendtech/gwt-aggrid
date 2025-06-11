@@ -11,6 +11,7 @@ public class RowDataTransaction<T> {
 	private JsArray<T> add;
 	private JsArray<T> remove;
 	private JsArray<T> update;
+	private Integer addIndex;
 
 	@JsOverlay
 	public final JsArray<T> getAdd() {
@@ -40,5 +41,15 @@ public class RowDataTransaction<T> {
 	@JsOverlay
 	public final void setUpdate(JsArray<T> update) {
 		this.update = update;
+	}
+
+	@JsOverlay
+	public final Integer getAddIndex() {
+		return addIndex;
+	}
+
+	@JsOverlay
+	public final void setAddIndex(Integer addIndex) {
+		this.addIndex = addIndex;
 	}
 }

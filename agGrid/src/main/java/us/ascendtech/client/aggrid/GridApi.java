@@ -29,7 +29,10 @@ public class GridApi<T> {
 	public native void setRowData(JsArray<T> rowData);
 
 	@JsMethod
-	public native void updateRowData(RowDataTransaction rowDataTransaction);
+	public native void updateRowData(RowDataTransaction<T> rowDataTransaction);
+
+	@JsMethod
+	public native RowNodeTransaction<T> applyTransaction(RowDataTransaction<T> rowDataTransaction);
 
 	@JsMethod
 	public native JsArray<T> getSelectedNodes();
